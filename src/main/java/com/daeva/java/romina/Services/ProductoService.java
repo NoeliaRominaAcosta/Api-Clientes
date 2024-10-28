@@ -37,19 +37,16 @@ public class ProductoService {
     }
 
 
-    public Producto updateProducto(Long id, Producto producto) {
+    public Optional<Producto> updateProducto(Long id, Producto producto) {
         // Verifica si el producto existe
         if (!productoRepository.existsById(id)) {
-            throw new EntityNotFoundException("Producto no encontrado con el ID: " + id);
+            return Optional.empty();
         }
-
         // Establecer el ID del producto a actualizar
         producto.setId(id);
-
         // Guardar y devolver el producto actualizado
-        return productoRepository.save(producto);  // save ya devuelve el producto actualizado
+        return Optional.of(productoRepository.save(producto));  // save ya devuelve el producto actualizado
     }
-
 
 
     public boolean deleteProducto(Long id) {
