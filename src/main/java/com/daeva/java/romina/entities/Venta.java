@@ -25,7 +25,7 @@ public class Venta {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "venta")
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL) // Asegúrate de que hay un cascade si estás guardando los detalles al mismo tiempo
     private List<DetalleVenta> detalles;
 
 }

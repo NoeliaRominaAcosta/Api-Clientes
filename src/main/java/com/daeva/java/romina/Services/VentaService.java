@@ -1,6 +1,11 @@
 package com.daeva.java.romina.Services;
 
+import com.daeva.java.romina.DTOs.VentaDTO;
+import com.daeva.java.romina.Repository.ClienteRepository;
+import com.daeva.java.romina.Repository.DetalleVentaRepository;
 import com.daeva.java.romina.Repository.VentaRepository;
+import com.daeva.java.romina.entities.Cliente;
+import com.daeva.java.romina.entities.DetalleVenta;
 import com.daeva.java.romina.entities.Venta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +18,10 @@ public class VentaService {
 
     @Autowired
     private VentaRepository ventaRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
+    @Autowired
+    DetalleVentaRepository detalleVentaRepository;
 
 
     public List<Venta> getAllVentas() {
@@ -25,9 +34,21 @@ public class VentaService {
     }
 
 
-    public Venta createVenta(Venta venta) {
-        // Aquí podrías realizar validaciones adicionales, si es necesario
-        return (Venta) ventaRepository.save(venta);
+    public Venta createVenta(VentaDTO ventaDTO) {
+        Venta venta = new Venta();
+        venta.setFecha(ventaDTO.getFecha());
+        venta.setTotal(ventaDTO.getTotal());
+
+        // Asigna el cliente utilizando el objeto cliente en lugar de solo el ID
+        Cliente cliente = clienteRepository.findById(ventaDTO.getCliente().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
+        venta.setCliente(cliente);
+
+        // Asigna los detalles usando los IDs de DetalleVenta
+        List<DetalleVenta> detalles = detalleVentaRepository.findAllById(ventaDTO.getDetallesIds());
+        venta.setDetalles(detalles);
+
+        return ventaRepository.save(venta);
     }
 
     public Optional<Venta> updateVenta(Long id, Venta venta) {

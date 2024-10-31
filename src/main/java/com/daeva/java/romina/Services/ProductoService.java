@@ -24,6 +24,9 @@ public class ProductoService {
     public Optional<Producto> getProductoById(Long id) {
         return productoRepository.findById(id);
     }
+    public List<Producto> getAllProductoById(List<Long> id) {
+        return productoRepository.findAllById(id);
+    }
 
     /**
      * Crear un nuevo producto.
