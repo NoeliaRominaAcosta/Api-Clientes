@@ -1,6 +1,8 @@
 package com.daeva.java.romina.Controllers;
 
+import com.daeva.java.romina.DTOs.ClienteDTO;
 import com.daeva.java.romina.DTOs.VentaDTO;
+import com.daeva.java.romina.Mappers.ClienteMapper;
 import com.daeva.java.romina.Mappers.VentaMapper;
 import com.daeva.java.romina.Services.ClienteService;
 import com.daeva.java.romina.Services.VentaService;
@@ -35,23 +37,19 @@ public class VentaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    //TODO: al momento de probar por postman, esto está fallando porque no encuentra el cliente que le paso, pero puede ser que estoy enviando mal el body del request
     @PostMapping
-    public ResponseEntity<Venta> createVenta(@RequestBody Venta ventaDTO) {
-        // Verifica que el cliente y su ID están presentes
-        if (ventaDTO.getCliente() == null || ventaDTO.getCliente().getId() == null) {
-            return ResponseEntity.badRequest().body(null); // Retorna un error si el cliente no es válido
+    public ResponseEntity<Venta> createVenta(@RequestBody VentaDTO ventaDTO) {
+        try {
+            Venta nuevaVenta = ventaService.createVenta(ventaDTO);
+            return new ResponseEntity<>(nuevaVenta, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST); // Cliente no encontrado
+        } catch (Exception e) {
+            // Manejo de otros errores que puedan ocurrir
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        // Verifica que el cliente existe en la base de datos
-        Optional<Cliente> clienteOpt = clienteService.getClienteById(ventaDTO.getCliente().getId());
-        if (!clienteOpt.isPresent()) {
-            return ResponseEntity.badRequest().body(null); // Retorna un error si el cliente no existe
-        }
-
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(ventaDTO);
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<Venta> updateVenta(@PathVariable Long id, @RequestBody Venta venta) {
