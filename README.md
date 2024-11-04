@@ -27,3 +27,7 @@ mediante algún Cliente REST, por ejemplo POSTMAN
 
 
 Documentación postman: https://drive.google.com/file/d/1P-eE2R1YMCufY3gHW3y9IEiM042Cef_X/view?usp=sharing
+
+**DER**
+
+![image](https://github.com/user-attachments/assets/af36070d-0005-429d-818d-fc71177d2519)
