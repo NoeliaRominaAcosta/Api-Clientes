@@ -24,3 +24,6 @@
 - El Código Fuente debe ser subido a un Repositorio Público de GitHub/GitLab.
 - Se debe realizar una presentación del desarrollo, mostrando la aplicación funcional
 mediante algún Cliente REST, por ejemplo POSTMAN
+
+
+Documentación postman: https://drive.google.com/file/d/1P-eE2R1YMCufY3gHW3y9IEiM042Cef_X/view?usp=sharing
