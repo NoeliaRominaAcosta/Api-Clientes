@@ -26,7 +26,8 @@
 mediante algún Cliente REST, por ejemplo POSTMAN
 
 
-Documentación postman: https://drive.google.com/file/d/1P-eE2R1YMCufY3gHW3y9IEiM042Cef_X/view?usp=sharing
+Documentación postman:
+https://drive.google.com/file/d/1vTz8TnrKdb7_zZ7n7DH0byVgh_iHcGtM/view?usp=sharing
 
 **DER**
 
