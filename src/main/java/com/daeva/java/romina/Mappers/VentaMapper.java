@@ -12,7 +12,7 @@ public class VentaMapper {
         dto.setId(venta.getId());
         dto.setFecha(venta.getFecha());
         dto.setTotal(venta.getTotal());
-
+        dto.setCantidad(venta.getCantidad());
         // Convertir Cliente a ClienteDTO
         dto.setCliente(ClienteMapper.toDTO(venta.getCliente())); // Asegúrate de tener este método
 
@@ -32,7 +32,7 @@ public class VentaMapper {
         venta.setId(ventaDTO.getId()); // Este ID puede ser nulo si estás creando una nueva venta
         venta.setFecha(ventaDTO.getFecha());
         venta.setTotal(ventaDTO.getTotal());
-
+        venta.setCantidad(ventaDTO.getCantidad());
         // Asigna el cliente existente
         venta.setCliente(cliente);
 

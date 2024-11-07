@@ -1,5 +1,6 @@
 package com.daeva.java.romina.DTOs;
 
+import com.daeva.java.romina.entities.DetalleVenta;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,4 +17,5 @@ public class VentaDTO {
     private Double total;
     private ClienteDTO cliente; // En lugar de clienteId
     private List<Long> detallesIds;
+    private Integer cantidad;
 }
