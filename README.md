@@ -28,7 +28,8 @@ mediante algún Cliente REST, por ejemplo POSTMAN
 
 Documentación postman:
 https://drive.google.com/file/d/1vTz8TnrKdb7_zZ7n7DH0byVgh_iHcGtM/view?usp=sharing
-
+Documentacion swagger:
+http://localhost:8080/swagger-ui/index.html
 **DER**
 
 ![image](https://github.com/user-attachments/assets/af36070d-0005-429d-818d-fc71177d2519)
